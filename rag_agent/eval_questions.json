@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "category": "straightforward",
+    "question": "What is FastAPI and what are its key features and advantages?"
+  },
+  {
+    "id": 2,
+    "category": "straightforward",
+    "question": "What are requirements for FastAPI?"
+  },
+  {
+    "id": 3,
+    "category": "paraphrased",
+    "question": "How fast is FastAPI's performance compared to NodeJS and Go web frameworks?"
+  },
+  {
+    "id": 4,
+    "category": "paraphrased",
+    "question": "How do you define path parameters and request body parameters in a FastAPI route?"
+  },
+  {
+    "id": 5,
+    "category": "multi-page",
+    "question": "How does FastAPI handle asynchronous requests with async/await alongside dependency injection?"
+  },
+  {
+    "id": 6,
+    "category": "unanswerable",
+    "question": "What is the recommended way to containerize a FastAPI application with Docker and run it using Uvicorn?"
+  },
+  {
+    "id": 7,
+    "category": "misleading",
+    "question": "Does FastAPI require Django ORM to be installed in order to query relational databases?"
+  },
+  {
+    "id": 8,
+    "category": "misleading",
+    "question": "Is FastAPI developed and officially maintained by the Apache Software Foundation?"
+  },
+  {
+    "id": 9,
+    "category": "unanswerable",
+    "question": "What is the current stock ticker symbol and share price for FastAPI Inc?"
+  },
+  {
+    "id": 10,
+    "category": "unanswerable",
+    "question": "What are the flight departure schedules and baggage policy for FastAPI Airlines?"
+  },
+  {
+    "id": 11,
+    "category": "straightforward",
+    "question": "Does FastAPI automatically generate interactive API documentation using Swagger UI and ReDoc?"
+  }
+]

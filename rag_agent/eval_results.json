@@ -1,0 +1,111 @@
+[
+  {
+    "id": 1,
+    "category": "straightforward",
+    "question": "What is FastAPI and what are its key features and advantages?",
+    "answer": "**FastAPI** is a modern, high\u2011performance web framework for building APIs with Python. It is built on top of **Starlette** (for the web parts) and **Pydantic** (for data validation), and it uses standard Python type hints to define request and response data. ### Key features\n- **Very high performance** \u2013 on par with NodeJS and Go because it inherits Starlette\u2019s speed. - **Fast to code** \u2013 development speed is increased by roughly 200\u202f%\u2011300\u202f%, letting you write features much quicker. - **Automatic data validation & serialization** \u2013 Pydantic handles validation and conversion based on type hints. - **Automatic interactive documentation** \u2013 OpenAPI/Swagger UI and ReDoc docs are generated at startup with no runtime overhead. - **Production\u2011ready** \u2013 designed for scalable, reliable APIs and widely adopted by large companies. - **Fewer bugs** \u2013 the strong typing and validation reduce common programming errors. ### Advantages\n- **Saves development time and code** \u2013 you get validation, serialization, and docs out of the box, avoiding the need to implement them yourself. - **Maintains high performance** \u2013 the extra features add virtually no overhead compared to using Starlette directly. - **Improves reliability** \u2013 built\u2011in validation and type\u2011hint enforcement lead to fewer bugs. - **Easy to learn and use** \u2013 leverages familiar Python syntax and type hints, making the framework approachable.",
+    "sources": [
+      "https://fastapi.tiangolo.com/",
+      "https://fastapi.tiangolo.com/benchmarks"
+    ]
+  },
+  {
+    "id": 2,
+    "category": "straightforward",
+    "question": "What are requirements for FastAPI?",
+    "answer": "FastAPI itself does not have many hard\u2011coded requirements, but the documentation lists the packages you normally need to install alongside it: * **uvicorn** \u2013 the ASGI server that loads and serves a FastAPI application. *If you want the high\u2011performance setup you install `uvicorn[standard]`, which pulls in extra dependencies such as\u202fuvloop.* * **fastapi\u2011cli[standard]** \u2013 provides the `fastapi` command\u2011line tool. *This \u201cstandard\u201d extra also includes `fastapi\u2011cloud\u2011cli`, which lets you deploy the app to FastAPI\u202fCloud with a single command.* * **Form parsing** \u2013 an additional optional dependency is required if you want to use `request.form()`. (The exact package name isn\u2019t given in the excerpt.) If you prefer not to include the optional \u201cstandard\u201d extras, you can install just the core library with: ```\nuv add fastapi\n``` instead of `uv add \"fastapi[standard]\"`.",
+    "sources": [
+      "https://fastapi.tiangolo.com/",
+      "https://fastapi.tiangolo.com/benchmarks"
+    ]
+  },
+  {
+    "id": 3,
+    "category": "paraphrased",
+    "question": "How fast is FastAPI's performance compared to NodeJS and Go web frameworks?",
+    "answer": "FastAPI delivers very high\u2011performance web APIs. According to the FastAPI documentation, its performance is comparable to that of Node\u202fJS frameworks and is essentially on par with Go\u2019s compiled\u2011language speed. In fact, it often out\u2011performs most tested Node\u202fJS frameworks while matching Go\u2019s performance, thanks to the underlying Starlette engine.",
+    "sources": [
+      "https://fastapi.tiangolo.com/",
+      "https://fastapi.tiangolo.com/async"
+    ]
+  },
+  {
+    "id": 4,
+    "category": "paraphrased",
+    "question": "How do you define path parameters and request body parameters in a FastAPI route?",
+    "answer": "**Path parameters** - Include the parameter name inside curly braces in the route string (e.g., `\"/items/{item_id}\"`). - Add a function argument with the same name and a type annotation (e.g., `item_id: int`). FastAPI will validate that the value is present in the path and that it matches the declared type\u202f\u2014\u202fif it isn\u2019t, the client receives a clear error. **Request\u2011body parameters** - Define a function argument that is not part of the path (e.g., a Pydantic model or a plain type). - If the argument has a default value (e.g., `= None`) it is optional; without a default it is required (as with a `PUT` request body). FastAPI extracts the data from the request body and validates it according to the declared type. These definitions let FastAPI automatically handle extraction, validation, and documentation of both path and body parameters.",
+    "sources": [
+      "https://fastapi.tiangolo.com/",
+      "https://fastapi.tiangolo.com/tutorial/dependencies"
+    ]
+  },
+  {
+    "id": 5,
+    "category": "multi-page",
+    "question": "How does FastAPI handle asynchronous requests with async/await alongside dependency injection?",
+    "answer": "FastAPI treats the\u202f*async*\u202fand\u202f*def*\u202fstyles of functions differently, both for the endpoint itself and for any dependencies it must resolve. * **Path\u2011operation functions** \u2013 When a request matches a route, FastAPI calls the corresponding function. * If the function is declared with **`async def`**, FastAPI **awaits it directly**. * If it is a normal **`def`**, FastAPI **runs it in an external thread\u2011pool** and then awaits the result, so the server thread isn\u2019t blocked. * **Dependencies** \u2013 The same rule applies to dependency functions that FastAPI injects: * An **`async def`** dependency is **awaited** just like an async endpoint. * A regular **`def`** dependency is **executed in the thread\u2011pool** before FastAPI continues. Because FastAPI knows the signatures of all dependencies (and sub\u2011dependencies), it can include their validation and requirements in the generated OpenAPI schema, so the interactive docs also show the information from those dependencies. Thus, asynchronous requests are handled by awaiting async functions, while synchronous functions (including dependencies) are off\u2011loaded to a thread\u2011pool, allowing FastAPI to combine async/await with its dependency\u2011injection system seamlessly.",
+    "sources": [
+      "https://fastapi.tiangolo.com/async",
+      "https://fastapi.tiangolo.com/tutorial/dependencies"
+    ]
+  },
+  {
+    "id": 6,
+    "category": "unanswerable",
+    "question": "What is the recommended way to containerize a FastAPI application with Docker and run it using Uvicorn?",
+    "answer": "I don't have enough information in the indexed sources to answer that.",
+    "sources": [
+      "https://fastapi.tiangolo.com/",
+      "https://fastapi.tiangolo.com/fastapi-cli"
+    ]
+  },
+  {
+    "id": 7,
+    "category": "misleading",
+    "question": "Does FastAPI require Django ORM to be installed in order to query relational databases?",
+    "answer": "FastAPI does **not** require the Django ORM to be installed in order to query relational databases. The documentation notes that FastAPI\u2019s dependency\u2011injection system is compatible with \u201call the relational databases\u201d (as well as NoSQL databases, external packages, etc.), but it does not state that Django\u2019s ORM is a prerequisite.",
+    "sources": [
+      "https://fastapi.tiangolo.com/tutorial/dependencies"
+    ]
+  },
+  {
+    "id": 8,
+    "category": "misleading",
+    "question": "Is FastAPI developed and officially maintained by the Apache Software Foundation?",
+    "answer": "The site does not state that FastAPI is developed or officially maintained by the Apache Software Foundation. It describes FastAPI as a modern Python web framework created and maintained by its author and team, and notes that it is open\u2011source, but makes no mention of the Apache Software Foundation.",
+    "sources": [
+      "https://fastapi.tiangolo.com/"
+    ]
+  },
+  {
+    "id": 9,
+    "category": "unanswerable",
+    "question": "What is the current stock ticker symbol and share price for FastAPI Inc?",
+    "answer": "The site doesn\u2019t state the current stock ticker symbol for FastAPI\u202fInc. The site doesn\u2019t state the current share price for FastAPI\u202fInc.",
+    "sources": [
+      "https://fastapi.tiangolo.com/",
+      "https://fastapi.tiangolo.com/deployment/versions",
+      "https://fastapi.tiangolo.com/help-fastapi"
+    ]
+  },
+  {
+    "id": 10,
+    "category": "unanswerable",
+    "question": "What are the flight departure schedules and baggage policy for FastAPI Airlines?",
+    "answer": "I don't have enough information in the indexed sources to answer that.",
+    "sources": [
+      "https://fastapi.tiangolo.com/",
+      "https://fastapi.tiangolo.com/tutorial",
+      "https://fastapi.tiangolo.com/tutorial/dependencies"
+    ]
+  },
+  {
+    "id": 11,
+    "category": "straightforward",
+    "question": "Does FastAPI automatically generate interactive API documentation using Swagger UI and ReDoc?",
+    "answer": "Yes. FastAPI automatically creates interactive API documentation and provides two built\u2011in user interfaces: Swagger UI (available at\u202f`/docs`) and ReDoc (available at\u202f`/redoc`).",
+    "sources": [
+      "https://fastapi.tiangolo.com/"
+    ]
+  }
+]
